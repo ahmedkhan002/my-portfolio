@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import Random from './random'
+
 import './App.css'
 import Navbar from './components/Navbar'
+import Content from './components/Content'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,7 +16,7 @@ function App() {
         <Navbar />
         </div>
         <div class="grow overflow-scroll border-2 h-4/4">
-        <Random />
+        <Content />
         </div>
       </div>
     </>
