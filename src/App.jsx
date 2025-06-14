@@ -11,11 +11,11 @@ function App() {
 
   return (
     <>
-      <div class="flex gap-[2%] h-screen w-full flex-wrap fixed content-start">
-        <div class="w-1/12 border-2 h-full">
+      <div className="flex h-screen w-full flex-wrap fixed content-start">
+        <div className="w-1/6 max-sm:w-[40%] max-sm:z-100 max-sm:absolute h-full">
         <Navbar />
         </div>
-        <div class="grow overflow-scroll border-2 h-4/4">
+        <div className="grow overflow-scroll overflow-x-hidden h-4/4">
         <Content />
         </div>
       </div>
