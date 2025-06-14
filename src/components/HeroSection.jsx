@@ -1,9 +1,9 @@
 import React from 'react'
 
-const HeroSection = (id) => {
+const HeroSection = () => {
   return (
     <>
-        <section id={'hero'}>
+        <section>
 
         </section>
     </>
