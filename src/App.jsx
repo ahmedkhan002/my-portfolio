@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      <div className="flex h-screen w-full flex-wrap fixed content-start">
+      <div className="flex h-full w-full fixed content-start">
         <div className="lg:w-1/6">
         <Navbar />
         </div>
