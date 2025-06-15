@@ -44,7 +44,6 @@ function Navbar() {
 
     container.addEventListener("scroll", handleScroll);
 
-    // 🔧 Delay this to allow DOM layout to complete
     setTimeout(() => {
       handleScroll();
     }, 50);
@@ -55,19 +54,19 @@ function Navbar() {
   }, []);
 
 
- const scrollToSection = (sectionId) => {
-  const element = document.getElementById(sectionId);
-  const contentContainer = document.querySelector('.overflow-scroll'); // <- match this with your actual layout
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    const contentContainer = document.querySelector('.overflow-scroll');
 
-  if (element && contentContainer) {
-    const scrollOffset = element.offsetTop - contentContainer.offsetTop;
+    if (element && contentContainer) {
+      const scrollOffset = element.offsetTop - contentContainer.offsetTop;
 
-    contentContainer.scrollTo({
-      top: scrollOffset - 20, // add small padding if needed
-      behavior: "smooth"
-    });
-  }
-};
+      contentContainer.scrollTo({
+        top: scrollOffset - 20,
+        behavior: "smooth"
+      });
+    }
+  };
 
 
   return (
@@ -88,21 +87,25 @@ function Navbar() {
           {navItems.map(({ id, icon: Icon, label }) => (
             <div key={id} className="relative group">
               <button
-                onClick={() => scrollToSection(id)}
-                className={`${internalActiveSection === id ? "w-42" : "w-16 group-hover:w-42"
-                  } h-16 flex items-center justify-start rounded-xl transition-all duration-400 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400/50 overflow-hidden ${internalActiveSection === id
-                    ? "text-blue-400 bg-blue-500/50 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40"
-                    : "text-slate-400 hover:text-blue-400 bg-blue-500/10 hover:bg-blue-500/10 hover:shadow-lg hover:shadow-blue-500/10"
+                onClick={(e) => {
+                  e.currentTarget.blur(); // 👈 Fix: remove focus after click
+                  scrollToSection(id);
+                }}
+                className={`${internalActiveSection === id ? "w-42 ring-2" : "w-16 group-hover:w-42 ring-0"
+                  } h-16 flex items-center justify-start rounded-xl transition-all duration-400 cursor-pointer ring-0 focus:outline-none focus:ring-blue-400/50 overflow-hidden ${internalActiveSection === id
+                    ? "text-blue-400 bg-blue-500/50 ring-2 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40"
+                    : "text-slate-400 ring-0 hover:text-blue-400 bg-blue-500/10 hover:bg-blue-500/10 hover:shadow-lg hover:shadow-blue-500/10"
                   }`}
               >
+
                 <div className="flex items-center w-full">
                   <div className="w-16 h-16 flex items-center justify-center flex-shrink-0">
                     <Icon className="w-5 h-5" />
                   </div>
                   <span
                     className={`ml-3 text-sm font-medium text-slate-200 whitespace-nowrap transform transition-all duration-300 delay-75 ${internalActiveSection === id
-                        ? "opacity-100 translate-x-0"
-                        : "opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
+                      ? "opacity-100 translate-x-0"
+                      : "opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
                       }`}
                   >
                     {label}
@@ -115,7 +118,7 @@ function Navbar() {
 
       </div>
 
-           {/* Mobile Sidebar */}
+      {/* Mobile Sidebar */}
       <div className={`lg:hidden fixed top-0 left-0 h-full w-64 bg-slate-800 shadow-xl z-40 flex flex-col justify-center px-4 transition-transform duration-300 ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}>
         <nav className="flex flex-col space-y-4 w-full">
@@ -127,8 +130,8 @@ function Navbar() {
                   setMobileMenuOpen(false)
                 }}
                 className={`w-full h-16 flex items-center justify-start rounded-xl transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400/50 px-4 ${internalActiveSection === id
-                    ? "text-blue-400 bg-blue-500/20 shadow-lg shadow-blue-500/25"
-                    : "text-slate-400 hover:text-blue-400 hover:bg-blue-500/10"
+                  ? "text-blue-400 bg-blue-500/20 shadow-lg shadow-blue-500/25"
+                  : "text-slate-400 hover:text-blue-400 hover:bg-blue-500/10"
                   }`}
               >
                 <div className="flex items-center w-full">
