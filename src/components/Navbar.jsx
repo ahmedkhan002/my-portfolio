@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Home, User, FileText, Briefcase, Server, Mail, Menu, X } from 'lucide-react'
 
+
 const navItems = [
   { id: "home", icon: Home, label: "Home" },
   { id: "about", icon: User, label: "About" },
@@ -60,7 +61,7 @@ function Navbar() {
   return (
     <>
       <button
-        className="lg:hidden fixed top-4 left-4 z-50 bg-slate-800 p-3 rounded-lg shadow-lg"
+        className="lg:hidden fixed top-4 right-4 mr-2 cursor-pointer z-50 bg-slate-800 p-3 rounded-lg shadow-lg"
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
       >
         {mobileMenuOpen ? (
